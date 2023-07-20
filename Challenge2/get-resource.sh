@@ -38,3 +38,6 @@ else
    echo ""
    exit 1
 fi
+
+##how tpo execute this script 
+# sh get-resource.sh -p <profile name> -r <region> -i <ec2 instance id>
