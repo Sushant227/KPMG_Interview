@@ -6,17 +6,15 @@ helpFunction()
    echo -e "\t-p: profile Ex: dev"
    echo -e "\t-n: name of the resource" 
    echo -e "\t-r: region"
-   echo -e "\t-i: instanceid"
    echo -e "\t-o: output type"
    exit 1 # Exit script after printing help
 }
-while getopts ":p:n:r:i:o:" opt
+while getopts ":p:n:r:o:" opt
 do
    case "$opt" in
       p ) profile="$OPTARG" ;;
       n ) resourcetype="$OPTARG" ;;
       r ) region="$OPTARG" ;;
-      i ) instanceid="$OPTARG" ;;
       o ) output="$OPTARG" ;;
       ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
    esac
@@ -32,7 +30,7 @@ else
    echo ""
    exit 1
 fi
-if [-n "$resourcetype"] && [ -n "$region" ]
+if [-n "$resourcetype"] && [ -n "$region" ] 
 then
     ## below command get the jsoned output for given resource type ex: cloudformation, ec2. s3 etc
 	#aws resourcegroupstaggingapi get-resources --region $region --resource-type-filters $resourcetype --output $output > get-resource.json
@@ -45,3 +43,6 @@ else
    echo ""
    exit 1
 fi
+
+##how to execute this script
+# sh nestedobjects.sh -p <profile name> -r <region> -n <resource name> -o <output type>
